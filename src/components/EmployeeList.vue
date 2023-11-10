@@ -1,18 +1,20 @@
 <template>
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <table style="width: 100%;">
+    <div>
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Experience</th>
-                    <th>Age</th>
-                    <th>Address</th>
-                    <th></th>
+                    <th>#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Experience</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Address</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="employee in employees" :key="employee.id">
+                <tr v-for="(employee, index) in employees" :key="employee.id">
+                    <td scope="row">{{ index }}</td>
                     <td>{{ employee.name }}</td>
                     <td>{{ employee.surname }}</td>
                     <td>{{ employee.experience }}</td>
@@ -20,7 +22,8 @@
                     <td>{{ employee.address }}</td>
                     <td>
                         <button class="btn btn-success" @click="() => handleUpdate(employee.id)">U</button>
-                        <button class="btn btn-danger" style="margin-left: 10px;" @click="() => deleteEmployee(employee.id)">D</button>
+                        <button class="btn btn-danger" style="margin-left: 10px;"
+                            @click="() => deleteEmployee(employee.id)">D</button>
                     </td>
                 </tr>
             </tbody>
@@ -48,4 +51,10 @@ export default {
     }
 }
 </script>
-<style></style>
+<style>
+
+td,
+th {
+    text-align: left;
+}
+</style>

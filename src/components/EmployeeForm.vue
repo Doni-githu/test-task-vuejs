@@ -1,12 +1,12 @@
 <template>
-    <form @submit.prevent
-        style="display: flex; flex-direction: column; justify-content: center; align-items: center ; text-align: center; gap: 20px;">
+    <form @submit.prevent class="w-50 mx-auto">
         <Input type="text" v-model="employee.name" placeholder="Name" />
         <Input type="text" v-model="employee.surname" placeholder="Surname" />
         <Input type="number" v-model="employee.experience" placeholder="Experience" />
         <Input type="number" v-model="employee.age" placeholder="Age" />
         <Input type="text" v-model="employee.address" placeholder="Address" />
-        <button @click="updateEmployeeOrAddEmployee" style="text-transform: capitalize;">{{ action }}</button>
+        <button @click="updateEmployeeOrAddEmployee" style="text-transform: capitalize;width: 100%;"
+            class="btn btn-primary">{{ action }}</button>
     </form>
 </template>
 <script>
@@ -41,9 +41,17 @@ export default {
             const data = this.employees.find((item) => item.id === id)
             this.$store.commit("setEmployee", data)
         }
-        if (this.employeeData) {
-            console.log(this.employeeData);
+        if (this.employeeData && this.action === "update") {
             this.employee = this.employeeData
+        }
+        if (this.action === "add") {
+            this.employee = {
+                name: '',
+                surname: '',
+                experience: '',
+                age: '',
+                address: '',
+            }
         }
     },
     methods: {
@@ -58,12 +66,15 @@ export default {
                     }
                     return item
                 })
-
+                this.$store.commit("setEmployees", newData)
+                this.$router.push("/")
+                return
             }
 
             if (!Object.values(this.employee).every((item) => item)) {
                 return
             }
+
             const data = {
                 ...this.employee,
                 id: Date.now()
@@ -72,7 +83,7 @@ export default {
             this.$store.commit("setEmployees", newEmployeeList)
             this.$router.push("/")
         }
-    }
+    },
 }
 </script>
 <style></style>

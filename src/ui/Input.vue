@@ -1,6 +1,7 @@
 <template>
-    <div class="form-input">
-        <input :type="type" :placeholder="placeholder" :value="modelValue" @input="onChangeInput">
+    <div class="form-floating mb-3">
+        <input :type="type" :value="modelValue" @input="onChangeInput" class="form-control" id="floatingInput">
+        <label :for="placeholder">{{ placeholder }}</label>
     </div>
 </template>
 <script>
@@ -24,14 +25,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-.form-input input {
-    border-radius: 8px;
-    padding: 10px 12px;
-    border:1px solid black; 
-}
-
-.form-input input:focus {
-    outline: none;
-}
-</style>
