@@ -64,14 +64,11 @@ export default {
                 return
             }
 
-            if (!Object.values(this.employee).every((item) => item)) {
+            if (!Object.values(this.employee).every(Boolean)) {
                 return
             }
 
-            const data = {
-                ...this.employee,
-                id: Date.now()
-            }
+            const data = { ...this.employee, id: Date.now() }
             const newEmployeeList = [...this.employees, data]
             this.$store.commit("setEmployees", newEmployeeList)
             this.$router.push("/")

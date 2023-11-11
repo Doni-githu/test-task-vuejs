@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="w-50 mx-auto">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -14,7 +14,7 @@
             </thead>
             <tbody>
                 <tr v-for="(employee, index) in employees" :key="employee.id">
-                    <td scope="row">{{ index }}</td>
+                    <td scope="row">{{ index+1 }}</td>
                     <td>{{ employee.name }}</td>
                     <td>{{ employee.surname }}</td>
                     <td>{{ employee.experience }}</td>
