@@ -93,9 +93,22 @@ const mutations = {
     }
 }
 
+const actions = {
+    updateEmployee(context, employee) {
+        const newData = state.employees.map((item) => {
+            if (item.id === Number(employee.id)) {
+                return employee
+            }
+            return item
+        })
+        context.commit('setEmployees', newData)
+    }
+}
+
 
 
 export default {
     state,
-    mutations
+    mutations,
+    actions
 }

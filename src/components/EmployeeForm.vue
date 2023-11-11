@@ -57,17 +57,10 @@ export default {
     methods: {
         updateEmployeeOrAddEmployee() {
             if (this.action === "update") {
-                const newData = this.employees.map((item) => {
-                    if (item.id === Number(this.$route.params.id)) {
-                        return {
-                            ...this.employee,
-                            id: item.id
-                        }
-                    }
-                    return item
-                })
-                this.$store.commit("setEmployees", newData)
-                this.$router.push("/")
+                const id = Number(this.$route.params.id)
+                const data2 = { ...this.employee, id }
+                this.$store.dispatch('updateEmployee', data2)
+                this.$router.push('/')
                 return
             }
 
